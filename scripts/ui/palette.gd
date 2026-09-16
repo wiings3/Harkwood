@@ -51,6 +51,16 @@ const ATLAS_RECTS = {
 	"divider_wood": Rect2(1280, 345, 290, 26)
 }
 
+const RESOURCE_ICON_RECTS = {
+	"wood": Rect2(0, 0, 112, 112),
+	"hide": Rect2(112, 0, 112, 112),
+	"iron": Rect2(224, 0, 112, 112),
+	"amber": Rect2(336, 0, 112, 112),
+	"core": Rect2(448, 0, 112, 112),
+	"draught": Rect2(560, 0, 112, 112),
+	"coin": Rect2(672, 0, 112, 112)
+}
+
 static var body_font: Font
 static var title_font: Font
 static var icons: Texture2D
@@ -59,8 +69,10 @@ static var atlas_a: Texture2D
 static var sidebar_exact: Texture2D
 static var resource_exact: Texture2D
 static var world_frame_exact: Texture2D
+static var resource_icons_exact: Texture2D
 static var cache: Dictionary = {}
 static var texture_cache: Dictionary = {}
+static var resource_icon_cache: Dictionary = {}
 
 static func _load_webp_b64(paths: Array) -> Texture2D:
 	var encoded: String = ""
@@ -95,7 +107,9 @@ static func initialize() -> Theme:
 	sidebar_exact = _load_single_b64("sidebar_exact.b64")
 	resource_exact = _load_single_b64("resource_exact.b64")
 	world_frame_exact = _load_single_b64("world_frame_exact.b64")
+	resource_icons_exact = _load_single_b64("resource_icons_exact.b64")
 	texture_cache.clear()
+	resource_icon_cache.clear()
 
 	var theme := Theme.new()
 	theme.default_font = body_font
@@ -149,6 +163,27 @@ static func tex(name: String) -> Texture2D:
 	result.filter_clip = true
 	texture_cache[name] = result
 	return result
+
+static func resource_texture(name: String) -> Texture2D:
+	if resource_icons_exact == null or not RESOURCE_ICON_RECTS.has(name):
+		return null
+	if resource_icon_cache.has(name):
+		return resource_icon_cache[name]
+	var result := AtlasTexture.new()
+	result.atlas = resource_icons_exact
+	result.region = RESOURCE_ICON_RECTS[name]
+	result.filter_clip = true
+	resource_icon_cache[name] = result
+	return result
+
+static func resource_icon(name: String, dimension: float = 28.0) -> TextureRect:
+	var node := TextureRect.new()
+	node.texture = resource_texture(name)
+	node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	node.custom_minimum_size = Vector2(dimension, dimension)
+	node.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return node
 
 static func texture_box(name: String, margins: Vector4, content: Vector2 = Vector2(18, 10)) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
