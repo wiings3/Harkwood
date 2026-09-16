@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[node name="TextLine" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Text"
+autowrap_mode = 2
+mouse_filter = 2
