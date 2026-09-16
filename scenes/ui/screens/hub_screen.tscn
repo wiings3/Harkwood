@@ -1,0 +1,176 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/world_view.gd" id="1_world"]
+
+[node name="HubScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="World" type="Control" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+clip_contents = true
+script = ExtResource("1_world")
+
+[node name="SceneTitle" type="Panel" parent="World"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 486.0
+offset_bottom = 94.0
+
+[node name="Title" type="Label" parent="World/SceneTitle"]
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 27
+text = "The Lantern Hearth"
+
+[node name="Subtitle" type="Label" parent="World/SceneTitle"]
+offset_left = 19.0
+offset_top = 49.0
+offset_right = 450.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "HARKWOOD  /  SANCTUARY"
+
+[node name="Hearthforge" type="Button" parent="World"]
+offset_left = 198.0
+offset_top = 245.0
+offset_right = 330.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 13
+text = "Hearthforge"
+
+[node name="TradingPost" type="Button" parent="World"]
+offset_left = 614.0
+offset_top = 257.0
+offset_right = 750.0
+offset_bottom = 292.0
+theme_override_font_sizes/font_size = 13
+text = "Trading post"
+
+[node name="Chest" type="Button" parent="World"]
+offset_left = 84.0
+offset_top = 475.0
+offset_right = 194.0
+offset_bottom = 510.0
+theme_override_font_sizes/font_size = 13
+text = "Your chest"
+
+[node name="Wilds" type="Button" parent="World"]
+offset_left = 781.0
+offset_top = 350.0
+offset_right = 928.0
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 13
+text = "Into the wilds  ›"
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 13
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "REST, REFORGE, RETURN"
+
+[node name="Heading" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "A little light survives."
+autowrap_mode = 2
+
+[node name="Intro" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "The hearth is yours. Gather what the woods surrender, then make something that can face them."
+autowrap_mode = 2
+
+[node name="Rule1" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Player" type="HBoxContainer" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Sidebar/Scroll/Content/Player"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="Sidebar/Scroll/Content/Player"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="Sidebar/Scroll/Content/Player/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "The Wayfarer"
+
+[node name="Progress" type="Label" parent="Sidebar/Scroll/Content/Player/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Level 1 · 0 expeditions"
+
+[node name="Stats" type="Label" parent="Sidebar/Scroll/Content/Player/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "100 health   10 attack   0 armor"
+
+[node name="Rule2" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="ThreadLabel" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "YOUR NEXT THREAD"
+
+[node name="QuestTitle" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "A blade of your own"
+autowrap_mode = 2
+
+[node name="QuestText" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Craft any piece of equipment at the Hearthforge."
+autowrap_mode = 2
+
+[node name="Claim" type="Button" parent="Sidebar/Scroll/Content"]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Collect journal reward"
+
+[node name="Map" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 47)
+layout_mode = 2
+text = "Open the overworld  ›"
+
+[node name="Forge" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Craft at the Hearthforge"
+
+[node name="Inventory" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Inspect your equipment"
+
+[node name="Tip" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Walk to a named station, or use the tabs above. You begin with materials for your first upgrades."
+autowrap_mode = 2
