@@ -1,0 +1,183 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/world_view.gd" id="1_world"]
+
+[node name="BattleScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="World" type="Control" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+clip_contents = true
+script = ExtResource("1_world")
+
+[node name="SceneTitle" type="Panel" parent="World"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 486.0
+offset_bottom = 94.0
+
+[node name="Title" type="Label" parent="World/SceneTitle"]
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 27
+text = "Expedition"
+
+[node name="Subtitle" type="Label" parent="World/SceneTitle"]
+offset_left = 19.0
+offset_top = 49.0
+offset_right = 450.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "ENCOUNTER 1 / 3"
+
+[node name="HeroName" type="Label" parent="World"]
+offset_left = 154.0
+offset_top = 191.0
+offset_right = 385.0
+offset_bottom = 222.0
+theme_override_font_sizes/font_size = 23
+text = "The Wayfarer"
+
+[node name="EnemyName" type="Label" parent="World"]
+offset_left = 567.0
+offset_top = 191.0
+offset_right = 900.0
+offset_bottom = 222.0
+theme_override_font_sizes/font_size = 23
+text = "Enemy"
+
+[node name="PlayerHP" type="ProgressBar" parent="World"]
+offset_left = 147.0
+offset_top = 233.0
+offset_right = 384.0
+offset_bottom = 246.0
+show_percentage = false
+
+[node name="EnemyHP" type="ProgressBar" parent="World"]
+offset_left = 566.0
+offset_top = 233.0
+offset_right = 840.0
+offset_bottom = 246.0
+show_percentage = false
+
+[node name="PlayerHPText" type="Label" parent="World"]
+offset_left = 155.0
+offset_top = 252.0
+offset_right = 384.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 12
+text = "0 / 0 HP"
+
+[node name="EnemyHPText" type="Label" parent="World"]
+offset_left = 573.0
+offset_top = 252.0
+offset_right = 840.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 12
+text = "0 / 0 HP"
+
+[node name="Status" type="PanelContainer" parent="World"]
+offset_left = 22.0
+offset_top = 566.0
+offset_right = 958.0
+offset_bottom = 659.0
+
+[node name="Column" type="VBoxContainer" parent="World/Status"]
+layout_mode = 2
+
+[node name="State" type="Label" parent="World/Status/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Fighting automatically"
+
+[node name="Loot" type="Label" parent="World/Status/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Loot banked: 0 gold · 0 XP · 0 equipment drops"
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "AUTO-COMBAT"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Steel meets the wild."
+autowrap_mode = 2
+
+[node name="Intro" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Your equipment does the fighting. Watch your health, choose when to heal, and know when to turn back."
+autowrap_mode = 2
+
+[node name="AttackLabel" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "NEXT ATTACK"
+
+[node name="Attack" type="ProgressBar" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="Potion" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "Healing draught [Q]  ·  0"
+
+[node name="Controls" type="HBoxContainer" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Pause" type="Button" parent="Sidebar/Scroll/Content/Controls"]
+layout_mode = 2
+text = "Pause"
+
+[node name="Speed" type="Button" parent="Sidebar/Scroll/Content/Controls"]
+layout_mode = 2
+text = "Speed 1x"
+
+[node name="Retreat" type="Button" parent="Sidebar/Scroll/Content/Controls"]
+layout_mode = 2
+text = "Retreat"
+
+[node name="Rule" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="LogLabel" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "THE ENCOUNTER"
+
+[node name="Log" type="Label" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 195)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = ""
+autowrap_mode = 2
+
+[node name="Tip" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "The Hollow Hart enrages below 40% health. Draughts restore half your maximum health and have a 6-second cooldown."
+autowrap_mode = 2
