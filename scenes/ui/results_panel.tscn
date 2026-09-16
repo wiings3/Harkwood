@@ -1,0 +1,94 @@
+[gd_scene format=3]
+
+[node name="Results" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.04, 0.03, 0.78)
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 152.0
+offset_top = 110.0
+offset_right = 828.0
+offset_bottom = 564.0
+
+[node name="Column" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "EXPEDITION COMPLETE"
+
+[node name="Title" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "A little further into the dark."
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Your earned loot is safe. Return to the hearth to craft, equip and claim journal rewards."
+autowrap_mode = 2
+
+[node name="Rule" type="HSeparator" parent="Panel/Column"]
+layout_mode = 2
+
+[node name="GoldXP" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0 GOLD     0 EXPERIENCE"
+
+[node name="Materials" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "No materials gathered this time."
+autowrap_mode = 2
+
+[node name="Equipment" type="Label" parent="Panel/Column"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Equipment found:"
+autowrap_mode = 2
+
+[node name="Tip" type="Label" parent="Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "New recipes and trails unlock after first clears. Check your journal for unclaimed rewards."
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/Column"]
+layout_mode = 2
+
+[node name="Hearth" type="Button" parent="Panel/Column/Buttons"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return to the hearth"
+
+[node name="Journal" type="Button" parent="Panel/Column/Buttons"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Open journal"
+
+[node name="Travel" type="Button" parent="Panel/Column/Buttons"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Travel again"
