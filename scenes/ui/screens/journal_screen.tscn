@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[node name="JournalScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Main" type="PanelContainer" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+
+[node name="Content" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Threads in the dark"
+
+[node name="Intro" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Not every journey needs a prophecy. Sometimes a better blade is enough."
+autowrap_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Main/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="Main/Content/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "FIELD NOTES"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "The wood remembers."
+autowrap_mode = 2
+
+[node name="Image" type="TextureRect" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 205)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lore" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Follow the old trail from the Mosslight Verge to Briarstone, then seek the Hollow Hart beneath the elder trees."
+autowrap_mode = 2
+
+[node name="Rule" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Kills" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "0 creatures defeated"
+
+[node name="Crafted" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "0 items crafted"
+
+[node name="Rewards" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "0 / 5 journal rewards collected"
+
+[node name="Tip" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Build tip: armor reduces damage, haste speeds up attacks, critical hits deal 175% damage, and leech restores health on each hit."
+autowrap_mode = 2
