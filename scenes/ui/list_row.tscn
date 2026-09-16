@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[node name="ListRow" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 74)
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="Row"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Row/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "Item"
+autowrap_mode = 2
+
+[node name="Subtitle" type="Label" parent="Row/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Details"
+autowrap_mode = 2
+
+[node name="Meta" type="Label" parent="Row/Info"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Meta"
+autowrap_mode = 2
+
+[node name="Action" type="Button" parent="Row"]
+custom_minimum_size = Vector2(108, 38)
+layout_mode = 2
+text = "Action"
