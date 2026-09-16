@@ -23,3 +23,6 @@ test-output/
 *.archive-*
 .env
 .env.*
+
+# Local online configuration. Commit only the example file.
+online_config.json

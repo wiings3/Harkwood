@@ -12,6 +12,7 @@ var walking = false
 var moving_to = ""
 var hero: TextureRect
 var foe: TextureRect
+var background: TextureRect
 var stations = {"forge": Vector2(270, 338), "market": Vector2(699, 340),
 	"stash": Vector2(167, 467), "map": Vector2(828, 421)}
 var nodes = [Vector2(140, 495), Vector2(349, 391), Vector2(580, 252), Vector2(800, 162)]
@@ -28,16 +29,20 @@ var route_to = Vector2.ZERO
 func _ready() -> void:
 	clip_contents = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	var background = TextureRect.new()
+	background = TextureRect.new()
 	background.texture = load(background_path)
 	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	background.stretch_mode = TextureRect.STRETCH_SCALE
+	background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background)
-	if mode == "map":
-		background.modulate = Color(0.63, 0.64, 0.53)
-	else:
+	_apply_environment_grade()
+	var shade = ColorRect.new()
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shade.color = Color(0.02, 0.035, 0.026, 0.08 if mode == "hub" else 0.14)
+	add_child(shade)
+	if mode != "map":
 		hero = UI.icon(1 if mode == "hub" else 0, 1, true)
 		add_child(hero)
 		if mode == "battle":
@@ -50,6 +55,18 @@ func _ready() -> void:
 	add_child(effects)
 	set_meta("effects", effects)
 	position_actors()
+
+func _apply_environment_grade() -> void:
+	if not is_instance_valid(background):
+		return
+	if mode == "map":
+		background.modulate = Color(0.78, 0.79, 0.68)
+	elif background_path.contains("quarry"):
+		background.modulate = Color(0.90, 0.84, 0.72)
+	elif background_path.contains("hollow"):
+		background.modulate = Color(0.77, 0.84, 0.77)
+	else:
+		background.modulate = Color.WHITE
 
 func _process(delta: float) -> void:
 	time += delta
@@ -86,7 +103,7 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 func approach(station: String) -> void:
-	if active:
+	if active and stations.has(station):
 		target = stations[station]
 		moving_to = station
 
@@ -99,6 +116,7 @@ func interact() -> void:
 			return
 
 func travel(to_index: int) -> void:
+	to_index = clampi(to_index, 1, nodes.size() - 1)
 	route_from = nodes[0]
 	route_to = nodes[to_index]
 	route_index = to_index
@@ -139,11 +157,16 @@ func hit(who: String) -> void:
 		create_tween().tween_property(victim, "modulate", Color.WHITE, 0.22)
 
 func _draw_effects(canvas: Control) -> void:
-	for i in range(24):
-		var x = fposmod(i * 137.4 + sin(time * 0.2 + i) * 25, size.x)
+	var mote_count = 30 if background_path.contains("hollow") else 24
+	for i in range(mote_count):
+		var drift = 2.0 if background_path.contains("quarry") else 1.0
+		var x = fposmod(i * 137.4 + sin(time * 0.2 + i) * 25 * drift, size.x)
 		var y = fposmod(i * 87.1 - time * (3 + i % 4), size.y)
-		var alpha = (sin(time * 1.4 + i) + 1.1) * 0.17
-		canvas.draw_circle(Vector2(x, y), 1.5, Color(0.95, 0.75, 0.4, alpha))
+		var alpha = (sin(time * 1.4 + i) + 1.1) * (0.11 if background_path.contains("quarry") else 0.17)
+		var mote_color = Color(0.95, 0.75, 0.4, alpha)
+		if background_path.contains("hollow"):
+			mote_color = Color(0.66, 0.86, 0.68, alpha * 1.15)
+		canvas.draw_circle(Vector2(x, y), 1.5 if i % 4 else 2.2, mote_color)
 	if mode == "hub":
 		canvas.draw_arc(avatar + Vector2(0, -2), 20, 0, TAU, 32, Color(0.85, 0.74, 0.49, 0.65), 1.3, true)
 		if walking:
@@ -153,13 +176,18 @@ func _draw_effects(canvas: Control) -> void:
 			var a = nodes[i]
 			var b = nodes[i + 1]
 			for j in range(18):
-				canvas.draw_circle(a.lerp(b, float(j) / 18), 2, Color(0.85, 0.75, 0.54, 0.75))
+				var pulse = 0.58 + sin(time * 2.0 + j * 0.45) * 0.12
+				canvas.draw_circle(a.lerp(b, float(j) / 18), 2, Color(0.85, 0.75, 0.54, pulse))
 		for p in nodes:
 			canvas.draw_circle(p, 27, UI.INK)
-			canvas.draw_arc(p, 28, 0, TAU, 48, UI.GOLD, 1.5, true)
-		if route_progress >= 0:
+			canvas.draw_arc(p, 28 + sin(time * 1.5) * 1.2, 0, TAU, 48, UI.GOLD, 1.5, true)
+		if route_progress >= 0 and route_index > 0:
 			var along = route_progress * route_index
 			var segment = mini(int(along), route_index - 1)
 			var marker = nodes[segment].lerp(nodes[segment + 1], along - segment)
 			canvas.draw_circle(marker, 9, UI.GOLD)
-			canvas.draw_arc(marker, 16, 0, TAU, 24, UI.PAPER, 2, true)
+			canvas.draw_arc(marker, 16 + sin(time * 7) * 2, 0, TAU, 24, UI.PAPER, 2, true)
+	elif mode == "battle" and current_enemy_art == 7:
+		var aura_center = Vector2(713, 390)
+		canvas.draw_circle(aura_center, 88 + sin(time * 2.3) * 7, Color(0.35, 0.58, 0.34, 0.08))
+		canvas.draw_arc(aura_center, 98 + sin(time * 1.8) * 5, 0, TAU, 52, Color(0.58, 0.76, 0.48, 0.28), 2.0, true)

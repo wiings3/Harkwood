@@ -33,6 +33,10 @@ const AFFIXES = [
 	{"name": "of Thorns", "stat": "attack", "value": 3.0},
 	{"name": "of Haste", "stat": "haste", "value": 0.08},
 	{"name": "of Embers", "stat": "crit", "value": 0.06},
+	{"name": "of Old Bark", "stat": "armor", "value": 5.0},
+	{"name": "of Bloodroot", "stat": "leech", "value": 0.04},
+	{"name": "of the Stag", "stat": "health", "value": 24.0},
+	{"name": "of Cinders", "stat": "attack", "value": 5.0},
 ]
 const ENEMIES = {
 	"boar": {"name": "Mossback boar", "art": 2, "health": 34.0, "attack": 7.0, "armor": 1.0, "interval": 1.9, "xp": 12, "gold": 6, "loot": {"hide": 2, "wood": 2}},
