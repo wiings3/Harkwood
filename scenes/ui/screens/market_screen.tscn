@@ -1,0 +1,119 @@
+[gd_scene format=3]
+
+[node name="MarketScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Main" type="PanelContainer" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+
+[node name="Content" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "The Lantern Exchange"
+
+[node name="Intro" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LOCAL SIMULATION · These are NPC offers and simulated buyers, not other players."
+autowrap_mode = 2
+
+[node name="Tabs" type="HBoxContainer" parent="Main/Content"]
+layout_mode = 2
+
+[node name="Buy" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Sell" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Sell"
+
+[node name="Listings" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "My listings"
+
+[node name="Materials" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Materials"
+
+[node name="Scroll" type="ScrollContainer" parent="Main/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="Main/Content/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "THE TRADING POST"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Good steel finds a home."
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Buy a new roll, turn spare materials into gold, or offer your crafted gear for sale."
+autowrap_mode = 2
+
+[node name="GoldIcon" type="TextureRect" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Gold" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "0 gold available"
+
+[node name="Rule" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Info" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Listings lock the item out of your inventory. Cancel any time to get it back."
+autowrap_mode = 2
+
+[node name="Stats" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "0 / 8 listings · 0 sales"
+
+[node name="Potion" type="Button" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+text = "Buy healing draught  ·  12 gold"
+
+[node name="OnlineStatus" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Local simulation active."
+autowrap_mode = 2
