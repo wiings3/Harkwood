@@ -14,3 +14,12 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Local exports, test captures and runtime state
+builds/
+test-output/
+*.log
+*.tmp
+*.archive-*
+.env
+.env.*
