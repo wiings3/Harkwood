@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[node name="IconBlock" type="TextureRect"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
