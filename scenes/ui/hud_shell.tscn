@@ -1,0 +1,232 @@
+[gd_scene format=3]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Header" type="Control" parent="."]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 90.0
+
+[node name="Brand" type="Label" parent="Header"]
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 250.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 29
+text = "HARKWOOD"
+
+[node name="Edition" type="Label" parent="Header"]
+offset_left = 30.0
+offset_top = 58.0
+offset_right = 260.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 9
+text = "A LANTERN AGAINST THE DARK"
+
+[node name="Hearth" type="Button" parent="Header"]
+offset_left = 297.0
+offset_top = 27.0
+offset_right = 391.0
+offset_bottom = 67.0
+text = "Hearth"
+
+[node name="Wilds" type="Button" parent="Header"]
+offset_left = 399.0
+offset_top = 27.0
+offset_right = 493.0
+offset_bottom = 67.0
+text = "Wilds"
+
+[node name="Pack" type="Button" parent="Header"]
+offset_left = 501.0
+offset_top = 27.0
+offset_right = 595.0
+offset_bottom = 67.0
+text = "Pack"
+
+[node name="Forge" type="Button" parent="Header"]
+offset_left = 603.0
+offset_top = 27.0
+offset_right = 697.0
+offset_bottom = 67.0
+text = "Forge"
+
+[node name="Exchange" type="Button" parent="Header"]
+offset_left = 705.0
+offset_top = 27.0
+offset_right = 817.0
+offset_bottom = 67.0
+text = "Exchange"
+
+[node name="Journal" type="Button" parent="Header"]
+offset_left = 825.0
+offset_top = 27.0
+offset_right = 919.0
+offset_bottom = 67.0
+text = "Journal"
+
+[node name="GoldIcon" type="TextureRect" parent="Header"]
+offset_left = 1000.0
+offset_top = 29.0
+offset_right = 1032.0
+offset_bottom = 61.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Gold" type="Label" parent="Header"]
+offset_left = 1040.0
+offset_top = 30.0
+offset_right = 1115.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="Level" type="Label" parent="Header"]
+offset_left = 1138.0
+offset_top = 25.0
+offset_right = 1255.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 16
+text = "LV. 01"
+
+[node name="XP" type="ProgressBar" parent="Header"]
+offset_left = 1138.0
+offset_top = 53.0
+offset_right = 1248.0
+offset_bottom = 59.0
+show_percentage = false
+
+[node name="Settings" type="Button" parent="Header"]
+offset_left = 1305.0
+offset_top = 28.0
+offset_right = 1411.0
+offset_bottom = 66.0
+text = "Settings"
+
+[node name="Divider" type="HSeparator" parent="Header"]
+offset_left = 24.0
+offset_top = 88.0
+offset_right = 1416.0
+offset_bottom = 90.0
+mouse_filter = 2
+
+[node name="Page" type="Control" parent="."]
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 1416.0
+offset_bottom = 792.0
+
+[node name="Footer" type="Control" parent="."]
+offset_left = 24.0
+offset_top = 810.0
+offset_right = 1416.0
+offset_bottom = 878.0
+
+[node name="Resources" type="HBoxContainer" parent="Footer"]
+offset_top = 4.0
+offset_right = 1392.0
+offset_bottom = 38.0
+theme_override_constants/separation = 12
+
+[node name="WoodIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Wood" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Heartwood  0"
+
+[node name="HideIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hide" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Wild hide  0"
+
+[node name="IronIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Iron" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Bog iron  0"
+
+[node name="AmberIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amber" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Ember resin  0"
+
+[node name="CoreIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Core" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Hollow heart  0"
+
+[node name="DraughtIcon" type="TextureRect" parent="Footer/Resources"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Draughts" type="Label" parent="Footer/Resources"]
+layout_mode = 2
+text = "Draughts  0"
+
+[node name="Help" type="Label" parent="Footer"]
+offset_top = 46.0
+offset_right = 1115.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 12
+text = "WASD / arrows or click to walk  ·  E interact  ·  I pack  ·  M map  ·  C forge  ·  J journal  ·  F11 fullscreen"
+
+[node name="Version" type="Label" parent="Footer"]
+offset_left = 1192.0
+offset_top = 48.0
+offset_right = 1392.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 10
+text = "PROTOTYPE  /  0.2"
+horizontal_alignment = 2
+
+[node name="Toast" type="Label" parent="."]
+visible = false
+offset_left = 300.0
+offset_top = 92.0
+offset_right = 1345.0
+offset_bottom = 114.0
+theme_override_constants/outline_size = 5
+text = ""
+mouse_filter = 2
+
+[node name="ModalLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
