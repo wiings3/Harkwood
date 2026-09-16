@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[node name="ActionButton" type="Button"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Action"
+mouse_default_cursor_shape = 2
