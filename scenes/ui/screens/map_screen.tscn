@@ -1,0 +1,238 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/world_view.gd" id="1_world"]
+
+[node name="MapScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="World" type="Control" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+clip_contents = true
+script = ExtResource("1_world")
+
+[node name="SceneTitle" type="Panel" parent="World"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 486.0
+offset_bottom = 94.0
+
+[node name="Title" type="Label" parent="World/SceneTitle"]
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 27
+text = "The wilds of Harkwood"
+
+[node name="Subtitle" type="Label" parent="World/SceneTitle"]
+offset_left = 19.0
+offset_top = 49.0
+offset_right = 450.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "CHOOSE A TRAIL  /  PREPARE BEFORE DEPARTURE"
+
+[node name="HearthNode" type="Button" parent="World"]
+offset_left = 118.0
+offset_top = 473.0
+offset_right = 162.0
+offset_bottom = 517.0
+text = "⌂"
+
+[node name="HearthName" type="Label" parent="World"]
+offset_left = 56.0
+offset_top = 537.0
+offset_right = 230.0
+offset_bottom = 563.0
+theme_override_font_sizes/font_size = 19
+text = "Lantern Hearth"
+
+[node name="Verge" type="Button" parent="World"]
+offset_left = 327.0
+offset_top = 369.0
+offset_right = 371.0
+offset_bottom = 413.0
+text = "1"
+
+[node name="VergeName" type="Label" parent="World"]
+offset_left = 237.0
+offset_top = 433.0
+offset_right = 465.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 19
+text = "The Mosslight Verge"
+
+[node name="VergeInfo" type="Label" parent="World"]
+offset_left = 309.0
+offset_top = 463.0
+offset_right = 425.0
+offset_bottom = 483.0
+theme_override_font_sizes/font_size = 10
+text = "LEVEL 1"
+
+[node name="Quarry" type="Button" parent="World"]
+offset_left = 558.0
+offset_top = 230.0
+offset_right = 602.0
+offset_bottom = 274.0
+text = "2"
+
+[node name="QuarryName" type="Label" parent="World"]
+offset_left = 468.0
+offset_top = 294.0
+offset_right = 700.0
+offset_bottom = 321.0
+theme_override_font_sizes/font_size = 19
+text = "Briarstone Quarry"
+
+[node name="QuarryInfo" type="Label" parent="World"]
+offset_left = 540.0
+offset_top = 324.0
+offset_right = 655.0
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 10
+text = "LEVEL 3"
+
+[node name="Hollow" type="Button" parent="World"]
+offset_left = 778.0
+offset_top = 140.0
+offset_right = 822.0
+offset_bottom = 184.0
+text = "3"
+
+[node name="HollowName" type="Label" parent="World"]
+offset_left = 688.0
+offset_top = 204.0
+offset_right = 910.0
+offset_bottom = 231.0
+theme_override_font_sizes/font_size = 19
+text = "The Elder Hollow"
+
+[node name="HollowInfo" type="Label" parent="World"]
+offset_left = 760.0
+offset_top = 234.0
+offset_right = 875.0
+offset_bottom = 254.0
+theme_override_font_sizes/font_size = 10
+text = "LEVEL 5"
+
+[node name="Legend" type="Label" parent="World"]
+offset_left = 224.0
+offset_top = 631.0
+offset_right = 790.0
+offset_bottom = 653.0
+theme_override_font_sizes/font_size = 14
+text = "Follow the lantern trail. Clear each region to reach the next."
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 13
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "EXPEDITION  /  RECOMMENDED LV. 1"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "The Mosslight Verge"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Description"
+autowrap_mode = 2
+
+[node name="EnemyLabel" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "WHAT WAITS THERE"
+
+[node name="Enemies" type="HBoxContainer" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Enemy1" type="TextureRect" parent="Sidebar/Scroll/Content/Enemies"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Enemy2" type="TextureRect" parent="Sidebar/Scroll/Content/Enemies"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Enemy3" type="TextureRect" parent="Sidebar/Scroll/Content/Enemies"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drops" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Drops"
+autowrap_mode = 2
+
+[node name="Rule" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="StanceLabel" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "COMBAT STANCE"
+
+[node name="Stances" type="HBoxContainer" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Balanced" type="Button" parent="Sidebar/Scroll/Content/Stances"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Balanced"
+
+[node name="Fierce" type="Button" parent="Sidebar/Scroll/Content/Stances"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fierce"
+
+[node name="Guarded" type="Button" parent="Sidebar/Scroll/Content/Stances"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Guarded"
+
+[node name="StanceDescription" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Normal damage dealt and received."
+autowrap_mode = 2
+
+[node name="Draughts" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "0 healing draughts packed"
+
+[node name="Depart" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Begin expedition  ›"
+
+[node name="Tip" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "3 encounters. Health carries between fights with a small recovery. All earned loot is kept if you retreat."
+autowrap_mode = 2
