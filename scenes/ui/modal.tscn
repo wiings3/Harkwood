@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[node name="Modal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.035, 0.025, 0.86)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(570, 0)
+layout_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="Center/Panel"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Eyebrow" type="Label" parent="Center/Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "HARKWOOD"
+
+[node name="Title" type="Label" parent="Center/Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Modal title"
+autowrap_mode = 2
+
+[node name="Rule" type="HSeparator" parent="Center/Panel/Column"]
+layout_mode = 2
+
+[node name="Body" type="VBoxContainer" parent="Center/Panel/Column"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Close" type="Button" parent="Center/Panel/Column"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Close  [Esc]"
