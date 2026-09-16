@@ -1,0 +1,172 @@
+[gd_scene format=3]
+
+[node name="InventoryScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Main" type="PanelContainer" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+
+[node name="Content" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleRow" type="HBoxContainer" parent="Main/Content"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Main/Content/TitleRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "The wayfarer's pack"
+
+[node name="Carry" type="Label" parent="Main/Content/TitleRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "0 / 80 carried"
+
+[node name="Stats" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "HEALTH 0     ATTACK 0     ARMOR 0     CRIT 0%     HASTE 0%"
+
+[node name="Equipment" type="HBoxContainer" parent="Main/Content"]
+layout_mode = 2
+
+[node name="Weapon" type="Button" parent="Main/Content/Equipment"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WEAPON\nEmpty"
+
+[node name="Head" type="Button" parent="Main/Content/Equipment"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HEAD\nEmpty"
+
+[node name="Body" type="Button" parent="Main/Content/Equipment"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BODY\nEmpty"
+
+[node name="Feet" type="Button" parent="Main/Content/Equipment"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FEET\nEmpty"
+
+[node name="Tabs" type="HBoxContainer" parent="Main/Content"]
+layout_mode = 2
+
+[node name="Bag" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Backpack"
+
+[node name="Stash" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Storage chest"
+
+[node name="All" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "All"
+
+[node name="Weapon" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Head" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Head"
+
+[node name="Body" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Body"
+
+[node name="Feet" type="Button" parent="Main/Content/Tabs"]
+layout_mode = 2
+text = "Feet"
+
+[node name="Scroll" type="ScrollContainer" parent="Main/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="Main/Content/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "EQUIPMENT"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Make your own luck."
+autowrap_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stats" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Select an item to inspect it."
+autowrap_mode = 2
+
+[node name="Compare" type="Label" parent="Sidebar/Scroll/Content"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = ""
+autowrap_mode = 2
+
+[node name="Primary" type="Button" parent="Sidebar/Scroll/Content"]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Equip this item"
+
+[node name="Upgrade" type="Button" parent="Sidebar/Scroll/Content"]
+visible = false
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Upgrade"
+
+[node name="Storage" type="Button" parent="Sidebar/Scroll/Content"]
+visible = false
+layout_mode = 2
+text = "Move to storage"
+
+[node name="Salvage" type="Button" parent="Sidebar/Scroll/Content"]
+visible = false
+layout_mode = 2
+text = "Salvage for iron & hide"
+
+[node name="Value" type="Label" parent="Sidebar/Scroll/Content"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Exchange guide price: 0 gold"
