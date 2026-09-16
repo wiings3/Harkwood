@@ -52,7 +52,7 @@ func _build_online_market() -> void:
 	var tabs = UI2.row(col)
 	for tab in ["buy", "sell", "listings"]:
 		var value: String = tab
-		var caption := "My listings" if tab == "listings" else tab.capitalize()
+		var caption: String = "My listings" if value == "listings" else value.capitalize()
 		var button = UI2.button(caption, func(): online_market_tab = value; refresh(), 36)
 		if online_market_tab == tab:
 			button.add_theme_color_override("font_color", UI2.GOLD)
