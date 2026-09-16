@@ -1,6 +1,7 @@
 extends "res://scripts/harkwood_game.gd"
 ## Presentation layer built directly from the approved Harkwood concept-art UI elements.
 const RUI = preload("res://scripts/ui/palette.gd")
+
 const PAPER_INK = Color("302519")
 const PAPER_MUTED = Color("6f5b43")
 const PAPER_ACCENT = Color("775326")
@@ -56,8 +57,9 @@ func build_header() -> void:
 	gold_panel.size = Vector2(116, 56)
 	gold_panel.add_theme_stylebox_override("panel", RUI.dark_panel_box())
 	header.add_child(gold_panel)
-	var gold_icon := RUI.icon(13, 26)
-	gold_icon.position = Vector2(1005, 30)
+	var gold_icon := RUI.resource_icon("coin", 32)
+	gold_icon.position = Vector2(1003, 27)
+	gold_icon.size = Vector2(34, 34)
 	header.add_child(gold_icon)
 	var money := RUI.label(str(int(game.data.gold)), 18, RUI.GOLD, true)
 	money.position = Vector2(1040, 29)
@@ -85,17 +87,17 @@ func build_header() -> void:
 func build_footer() -> void:
 	_texture_rect("resource_bar_blank", Rect2(0, -2, 1015, 55), footer)
 	var row := RUI.row(footer)
-	row.position = Vector2(18, 7)
-	row.size = Vector2(975, 38)
-	row.add_theme_constant_override("separation", 5)
+	row.position = Vector2(14, 6)
+	row.size = Vector2(985, 39)
+	row.add_theme_constant_override("separation", 4)
 	for id in DB2.MATERIALS:
 		var mat: Dictionary = DB2.MATERIALS[id]
-		row.add_child(RUI.icon(int(mat.icon), 25))
+		row.add_child(RUI.resource_icon(str(id), 29))
 		row.add_child(RUI.label("%s  %d" % [str(mat.name), int(game.data.materials[id])], 12, RUI.PAPER))
 		var gap := Control.new()
-		gap.custom_minimum_size.x = 7
+		gap.custom_minimum_size.x = 6
 		row.add_child(gap)
-	row.add_child(RUI.icon(12, 25))
+	row.add_child(RUI.resource_icon("draught", 29))
 	row.add_child(RUI.label("Draughts  %d" % int(game.data.potions), 12, RUI.PAPER))
 
 	_texture_rect("footer_bar_blank", Rect2(1020, -2, 372, 55), footer)
