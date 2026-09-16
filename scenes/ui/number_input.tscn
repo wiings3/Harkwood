@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[node name="NumberInput" type="SpinBox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+min_value = 1.0
+max_value = 100.0
+step = 1.0
+value = 1.0
