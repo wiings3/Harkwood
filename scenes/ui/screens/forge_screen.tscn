@@ -1,0 +1,110 @@
+[gd_scene format=3]
+
+[node name="ForgeScreen" type="Control"]
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Main" type="PanelContainer" parent="."]
+offset_right = 980.0
+offset_bottom = 680.0
+
+[node name="Content" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "The Hearthforge"
+
+[node name="Intro" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Wood, iron, and a little stubbornness. Every craft rolls its own quality."
+autowrap_mode = 2
+
+[node name="Odds" type="Label" parent="Main/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "65% Common   ·   27% Fine   ·   8% Enchanted"
+
+[node name="Scroll" type="ScrollContainer" parent="Main/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="Main/Content/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+offset_left = 1000.0
+offset_right = 1392.0
+offset_bottom = 680.0
+
+[node name="Scroll" type="ScrollContainer" parent="Sidebar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Sidebar/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Eyebrow" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "CRAFTING  /  TIER 1"
+
+[node name="Title" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Hearthforged blade"
+autowrap_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 138)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stats" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "+10 Attack"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Base stats shown. Fine and Enchanted rolls increase these values and add random properties."
+autowrap_mode = 2
+
+[node name="Rule" type="HSeparator" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Costs" type="VBoxContainer" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+
+[node name="Craft" type="Button" parent="Sidebar/Scroll/Content"]
+custom_minimum_size = Vector2(0, 47)
+layout_mode = 2
+text = "Craft equipment"
+
+[node name="Warning" type="Label" parent="Sidebar/Scroll/Content"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = ""
+autowrap_mode = 2
+
+[node name="Brew" type="Button" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+text = "Brew draught   ·   3 gold"
+
+[node name="DraughtTip" type="Label" parent="Sidebar/Scroll/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Draught recipe: 2 heartwood + 1 resin. Restores 50% maximum health in combat."
+autowrap_mode = 2
