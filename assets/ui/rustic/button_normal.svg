@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="53" viewBox="0 0 390 53">
+<defs>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b321e"/><stop offset="0.48" stop-color="#26180f"/><stop offset="1" stop-color="#120d09"/></linearGradient>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#183127"/><stop offset="0.55" stop-color="#0e211a"/><stop offset="1" stop-color="#15281f"/></linearGradient>
+</defs>
+<rect x="1" y="1" width="388" height="51" rx="6" fill="#0a0806" stroke="#070504" stroke-width="2"/>
+<rect x="3" y="3" width="384" height="47" rx="5" fill="url(#wood)" stroke="#7d5a30" stroke-width="1.5"/>
+<rect x="10" y="8" width="370" height="37" rx="4" fill="url(#green)" stroke="#b08749" stroke-width="1.2"/>
+<path d="M16 13 H374 M16 40 H374" stroke="#d0a25a" stroke-width="0.6" opacity="0.32"/>
+<path d="M31 12 C88 18 142 8 197 14 S305 10 362 15" fill="none" stroke="#60725b" stroke-width="0.55" opacity="0.22"/>
+<g fill="#8b6a40" stroke="#17100b" stroke-width="1"><circle cx="8" cy="8" r="3"/><circle cx="382" cy="8" r="3"/><circle cx="8" cy="45" r="3"/><circle cx="382" cy="45" r="3"/></g>
+</svg>
