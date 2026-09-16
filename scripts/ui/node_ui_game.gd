@@ -75,8 +75,8 @@ func _heading(label: Label) -> void:
 	label.add_theme_color_override("font_color", UI2.PAPER)
 
 func _bind_header() -> void:
-	var disabled := traveling or (screen == "battle" and phase != "results")
-	var nav := {
+	var disabled = traveling or (screen == "battle" and phase != "results")
+	var nav = {
 		"Hearth": "hub",
 		"Wilds": "map",
 		"Pack": "inventory",
@@ -108,8 +108,8 @@ func _bind_header() -> void:
 
 func _bind_footer() -> void:
 	var resources: HBoxContainer = footer.get_node("Resources")
-	var ids := ["wood", "hide", "iron", "amber", "core"]
-	var names := ["Wood", "Hide", "Iron", "Amber", "Core"]
+	var ids = ["wood", "hide", "iron", "amber", "core"]
+	var names = ["Wood", "Hide", "Iron", "Amber", "Core"]
 	for i in range(ids.size()):
 		var id: String = ids[i]
 		var icon: TextureRect = resources.get_node(names[i] + "Icon")
@@ -130,12 +130,12 @@ func _bind_footer() -> void:
 	version.add_theme_color_override("font_color", UI2.GOLD)
 
 func _build_hub_scene() -> void:
-	var root := _new_screen(HUB_SCENE, "hub", "res://assets/art/hub.png")
+	var root = _new_screen(HUB_SCENE, "hub", "res://assets/art/hub.png")
 	world = root.get_node("World")
 	world.station_requested.connect(request_screen)
 	_heading(root.get_node("World/SceneTitle/Title"))
 	root.get_node("World/SceneTitle/Subtitle").add_theme_color_override("font_color", UI2.GOLD)
-	var stations := {
+	var stations = {
 		"Hearthforge": "forge",
 		"TradingPost": "market",
 		"Chest": "stash",
@@ -177,14 +177,14 @@ func _build_hub_scene() -> void:
 	_connect_once(content.get_node("Inventory"), func(): request_screen("inventory"))
 
 func _build_map_scene() -> void:
-	var root := _new_screen(MAP_SCENE, "map", "res://assets/art/overworld.png")
+	var root = _new_screen(MAP_SCENE, "map", "res://assets/art/overworld.png")
 	world = root.get_node("World")
 	_heading(root.get_node("World/SceneTitle/Title"))
 	root.get_node("World/SceneTitle/Subtitle").add_theme_color_override("font_color", UI2.GOLD)
 	_connect_once(world.get_node("HearthNode"), func(): request_screen("hub"))
-	var button_names := ["Verge", "Quarry", "Hollow"]
-	var title_names := ["VergeName", "QuarryName", "HollowName"]
-	var info_names := ["VergeInfo", "QuarryInfo", "HollowInfo"]
+	var button_names = ["Verge", "Quarry", "Hollow"]
+	var title_names = ["VergeName", "QuarryName", "HollowName"]
+	var info_names = ["VergeInfo", "QuarryInfo", "HollowInfo"]
 	for i in range(DB2.ZONES.size()):
 		var zone: Dictionary = DB2.ZONES[i]
 		var id: String = str(zone.id)
@@ -219,14 +219,14 @@ func _build_map_scene() -> void:
 		content.get_node("Enemies/Enemy%d" % [i + 1]).texture = UI2.atlas(DB2.ENEMIES[enemy_id].art, true)
 	content.get_node("Drops").text = str(selected.drops)
 	content.get_node("Drops").add_theme_color_override("font_color", UI2.GREEN)
-	var stance_descriptions := {
+	var stance_descriptions = {
 		"balanced": "Normal damage dealt and received.",
 		"fierce": "+20% damage dealt. +20% damage taken.",
 		"guarded": "−15% damage dealt. −25% damage taken."
 	}
 	for option in ["balanced", "fierce", "guarded"]:
-		var stance_button: Button = content.get_node("Stances/" + option.capitalize())
-		var stance_value: String = option
+		var stance_button: Button = content.get_node("Stances/" + str(option).capitalize())
+		var stance_value: String = str(option)
 		_connect_once(stance_button, func():
 			stance = stance_value
 			refresh()
@@ -242,7 +242,7 @@ func _build_map_scene() -> void:
 	_connect_once(depart, depart_selected)
 
 func _build_inventory_scene() -> void:
-	var root := _new_screen(INVENTORY_SCENE)
+	var root = _new_screen(INVENTORY_SCENE)
 	var content: VBoxContainer = root.get_node("Main/Content")
 	_heading(content.get_node("TitleRow/Title"))
 	content.get_node("TitleRow/Carry").text = "%d / %d carried" % [game.data.bag.size(), State.BAG_LIMIT]
@@ -250,50 +250,51 @@ func _build_inventory_scene() -> void:
 	content.get_node("Stats").text = "HEALTH %d     ATTACK %d     ARMOR %d     CRIT %d%%     HASTE %d%%" % [stats.health, stats.attack, stats.armor, stats.crit * 100, stats.haste * 100]
 	content.get_node("Stats").add_theme_color_override("font_color", UI2.GREEN)
 	for slot in DB2.SLOTS:
-		var equipment_button: Button = content.get_node("Equipment/" + slot.capitalize())
-		var uid: String = str(game.data.equipped.get(slot, ""))
+		var slot_name: String = str(slot)
+		var equipment_button: Button = content.get_node("Equipment/" + slot_name.capitalize())
+		var uid: String = str(game.data.equipped.get(slot_name, ""))
 		var equipped_item: Dictionary = game.find_gear(uid)
 		equipment_button.disabled = equipped_item.is_empty()
 		if equipped_item.is_empty():
-			equipment_button.text = slot.to_upper() + "\nEmpty"
+			equipment_button.text = slot_name.to_upper() + "\nEmpty"
 		else:
-			equipment_button.text = slot.to_upper() + "\n" + str(DB2.ITEMS[equipped_item.id].name)
+			equipment_button.text = slot_name.to_upper() + "\n" + str(DB2.ITEMS[equipped_item.id].name)
 			_connect_once(equipment_button, func():
 				selected_gear = uid
 				inventory_tab = "bag"
 				refresh()
 			)
 	for tab in ["bag", "stash"]:
-		var tab_node_name := "Bag" if tab == "bag" else "Stash"
+		var tab_value: String = str(tab)
+		var tab_node_name: String = "Bag" if tab_value == "bag" else "Stash"
 		var tab_button: Button = content.get_node("Tabs/" + tab_node_name)
-		var tab_value: String = tab
 		_connect_once(tab_button, func():
 			inventory_tab = tab_value
 			selected_gear = ""
 			refresh()
 		)
 		tab_button.remove_theme_color_override("font_color")
-		if inventory_tab == tab:
+		if inventory_tab == tab_value:
 			tab_button.add_theme_color_override("font_color", UI2.GOLD)
 	for filter in ["all", "weapon", "head", "body", "feet"]:
-		var filter_button: Button = content.get_node("Tabs/" + filter.capitalize())
-		var filter_value: String = filter
+		var filter_value: String = str(filter)
+		var filter_button: Button = content.get_node("Tabs/" + filter_value.capitalize())
 		_connect_once(filter_button, func():
 			inventory_slot = filter_value
 			refresh()
 		)
 		filter_button.remove_theme_color_override("font_color")
-		if inventory_slot == filter:
+		if inventory_slot == filter_value:
 			filter_button.add_theme_color_override("font_color", UI2.GOLD)
 	var list: VBoxContainer = content.get_node("Scroll/List")
-	var count := 0
+	var count = 0
 	for item in game.data[inventory_tab]:
 		if inventory_slot != "all" and DB2.ITEMS[item.id].slot != inventory_slot:
 			continue
 		count += 1
 		var candidate: Dictionary = item
 		var candidate_uid: String = str(candidate.uid)
-		var action := "EQUIPPED" if game.equipped(candidate_uid) else "Inspect"
+		var action: String = "EQUIPPED" if game.equipped(candidate_uid) else "Inspect"
 		_add_gear_row(list, candidate, action, func():
 			selected_gear = candidate_uid
 			refresh()
@@ -355,17 +356,18 @@ func _bind_inventory_sidebar(root: Node) -> void:
 	value_label.text = "Exchange guide price: %d gold" % game.item_value(selected)
 
 func _build_forge_scene() -> void:
-	var root := _new_screen(FORGE_SCENE)
+	var root = _new_screen(FORGE_SCENE)
 	var content: VBoxContainer = root.get_node("Main/Content")
 	_heading(content.get_node("Title"))
 	content.get_node("Odds").text = "65%% Common   ·   27%% Fine   ·   8%% Enchanted     /     Unlocked: Tier %d" % game.crafting_tier()
 	content.get_node("Odds").add_theme_color_override("font_color", UI2.GOLD)
 	var list: VBoxContainer = content.get_node("Scroll/List")
 	for id in DB2.ITEMS:
-		var recipe: Dictionary = DB2.ITEMS[id]
+		var recipe_id: String = str(id)
+		var recipe: Dictionary = DB2.ITEMS[recipe_id]
 		if int(recipe.tier) == 0:
 			continue
-		_add_recipe_row(list, id, recipe)
+		_add_recipe_row(list, recipe_id, recipe)
 	var selected: Dictionary = DB2.ITEMS[selected_recipe]
 	var side: VBoxContainer = root.get_node("Sidebar/Scroll/Content")
 	sidebar = side
@@ -378,11 +380,12 @@ func _build_forge_scene() -> void:
 	side.get_node("Stats").add_theme_color_override("font_color", UI2.GREEN)
 	var costs: VBoxContainer = side.get_node("Costs")
 	for id in selected.cost:
-		var owned := int(game.data.materials[id])
-		var needed := int(selected.cost[id])
-		var color := UI2.GREEN if owned >= needed else UI2.RED
-		_add_text(costs, "%s   %d / %d" % [DB2.MATERIALS[id].name, owned, needed], 14, color)
-	var gold_color := UI2.GOLD if game.data.gold >= selected.gold else UI2.RED
+		var material_id: String = str(id)
+		var owned: int = int(game.data.materials[material_id])
+		var needed: int = int(selected.cost[material_id])
+		var color: Color = UI2.GREEN if owned >= needed else UI2.RED
+		_add_text(costs, "%s   %d / %d" % [DB2.MATERIALS[material_id].name, owned, needed], 14, color)
+	var gold_color: Color = UI2.GOLD if game.data.gold >= selected.gold else UI2.RED
 	_add_text(costs, "Gold   %d / %d" % [int(game.data.gold), int(selected.gold)], 14, gold_color)
 	var craft: Button = side.get_node("Craft")
 	craft.disabled = not game.can_craft(selected_recipe)
@@ -409,20 +412,20 @@ func _add_recipe_row(parent: Node, id: String, recipe: Dictionary) -> void:
 	)
 
 func _build_market_scene() -> void:
-	var root := _new_screen(MARKET_SCENE)
+	var root = _new_screen(MARKET_SCENE)
 	var content: VBoxContainer = root.get_node("Main/Content")
 	_heading(content.get_node("Title"))
 	var list: VBoxContainer = content.get_node("Scroll/List")
 	for tab in ["buy", "sell", "listings", "materials"]:
-		var node_name := "Listings" if tab == "listings" else tab.capitalize()
+		var tab_value: String = str(tab)
+		var node_name: String = "Listings" if tab_value == "listings" else tab_value.capitalize()
 		var tab_button: Button = content.get_node("Tabs/" + node_name)
-		var tab_value: String = tab
 		_connect_once(tab_button, func():
 			market_tab = tab_value
 			refresh()
 		)
 		tab_button.remove_theme_color_override("font_color")
-		if market_tab == tab:
+		if market_tab == tab_value:
 			tab_button.add_theme_color_override("font_color", UI2.GOLD)
 	match market_tab:
 		"buy":
@@ -440,7 +443,7 @@ func _build_market_scene() -> void:
 				_add_gear_row(list, listing.item, "Cancel · %dg" % listing.price, func(): perform(game.cancel_listing(listing_uid), "Listing withdrawn. Your item was returned."))
 		"materials":
 			for id in DB2.MATERIALS:
-				_add_material_row(list, id)
+				_add_material_row(list, str(id))
 	var side: VBoxContainer = root.get_node("Sidebar/Scroll/Content")
 	sidebar = side
 	_heading(side.get_node("Title"))
@@ -467,12 +470,13 @@ func _add_material_row(parent: Node, id: String) -> void:
 	_connect_once(action, func(): perform(game.sell_material(id, 1), "Material sold."))
 
 func _build_journal_scene() -> void:
-	var root := _new_screen(JOURNAL_SCENE)
+	var root = _new_screen(JOURNAL_SCENE)
 	var content: VBoxContainer = root.get_node("Main/Content")
 	_heading(content.get_node("Title"))
 	var list: VBoxContainer = content.get_node("Scroll/List")
 	for quest in DB2.QUESTS:
-		_add_quest_row(list, quest)
+		var quest_data: Dictionary = quest
+		_add_quest_row(list, quest_data)
 	var side: VBoxContainer = root.get_node("Sidebar/Scroll/Content")
 	sidebar = side
 	_heading(side.get_node("Title"))
@@ -486,7 +490,7 @@ func _add_quest_row(parent: Node, quest: Dictionary) -> void:
 	parent.add_child(row)
 	row.get_node("Row/Icon").texture = UI2.atlas(15)
 	var claimed: bool = str(quest.id) in game.data.quests
-	var progress := mini(game.quest_progress(quest), int(quest.target))
+	var progress: int = mini(int(game.quest_progress(quest)), int(quest.target))
 	row.get_node("Row/Info/Title").text = str(quest.name)
 	row.get_node("Row/Info/Subtitle").text = str(quest.text)
 	var meta: Label = row.get_node("Row/Info/Meta")
@@ -504,12 +508,12 @@ func _add_quest_row(parent: Node, quest: Dictionary) -> void:
 	_connect_once(action, func(): claim(quest_id))
 
 func _build_battle_scene() -> void:
-	var background := "res://assets/art/forest.png"
+	var background: String = "res://assets/art/forest.png"
 	if selected_zone == "quarry":
 		background = "res://assets/art/quarry.png"
 	elif selected_zone == "hollow":
 		background = "res://assets/art/hollow.png"
-	var root := _new_screen(BATTLE_SCENE, "battle", background)
+	var root = _new_screen(BATTLE_SCENE, "battle", background)
 	world = root.get_node("World")
 	world.enemy_art(battle.enemy.art)
 	var zone: Dictionary = DB2.zone(selected_zone)
@@ -552,7 +556,7 @@ func _show_results_scene() -> void:
 	world.add_child(results)
 	var col: VBoxContainer = results.get_node("Panel/Column")
 	col.get_node("Eyebrow").text = "EXPEDITION COMPLETE" if outcome == "victory" else "BACK FROM THE BRINK"
-	var titles := {
+	var titles = {
 		"victory": "A little further into the dark.",
 		"defeat": "The hearth still burns for you.",
 		"retreat": "Live to walk another trail."
@@ -640,7 +644,7 @@ func toast(message: String) -> void:
 	toast_time = 6.0
 
 func show_welcome() -> void:
-	var body := open_modal("A lantern against the dark.", "WELCOME TO HARKWOOD")
+	var body: VBoxContainer = open_modal("A lantern against the dark.", "WELCOME TO HARKWOOD")
 	_add_text(body, "A hand-drawn RPG about what you bring back, and what you make of it.", 19, UI2.PAPER)
 	_add_text(body, "1. Craft a Hearthforged blade with your starting materials.\n\n2. Equip it, then choose a trail on the Wilds map.\n\n3. Watch automatic battles, heal with Q, and bring back loot.\n\n4. Claim journal rewards, improve your gear, and face the Hollow Hart.", 16)
 	_add_button(body, "Enter Harkwood", _accept_welcome, 46)
@@ -653,13 +657,13 @@ func _accept_welcome() -> void:
 func show_settings() -> void:
 	if traveling:
 		return
-	var body := open_modal("By the fireside", "SETTINGS & HELP")
+	var body: VBoxContainer = open_modal("By the fireside", "SETTINGS & HELP")
 	_add_button(body, "Enable sound" if sound.muted else "Mute sound", _toggle_sound)
 	_add_text(body, "DISPLAY", 11, UI2.GOLD)
-	var display_row := HBoxContainer.new()
+	var display_row: HBoxContainer = HBoxContainer.new()
 	body.add_child(display_row)
 	for preset in [[1280, 720], [1600, 900], [1920, 1080]]:
-		var size := Vector2i(int(preset[0]), int(preset[1]))
+		var size: Vector2i = Vector2i(int(preset[0]), int(preset[1]))
 		_add_button(display_row, "%d×%d" % [size.x, size.y], func(): _set_window_size(size), 36)
 	_add_button(body, "Toggle fullscreen (F11)", _toggle_fullscreen, 36)
 	_add_button(body, "Save progress now", _manual_save)
@@ -677,16 +681,17 @@ func _manual_save() -> void:
 		toast("Progress saved.")
 
 func confirm_new_game() -> void:
-	var body := open_modal("Leave this journey behind?", "START OVER")
+	var body: VBoxContainer = open_modal("Leave this journey behind?", "START OVER")
 	_add_text(body, "This replaces your active character and progression. The current save and backup will be archived first.", 17)
 	_add_button(body, "Archive this save and start anew", _perform_new_game)
 
 func _perform_new_game() -> void:
 	if not test_mode:
-		var stamp := str(Time.get_unix_time_from_system()).replace(".", "-")
+		var stamp: String = str(Time.get_unix_time_from_system()).replace(".", "-")
 		for path in [game.save_path, game.save_path + ".bak"]:
-			if FileAccess.file_exists(path):
-				if DirAccess.copy_absolute(path, path + ".archive-" + stamp) != OK:
+			var archive_path: String = str(path)
+			if FileAccess.file_exists(archive_path):
+				if DirAccess.copy_absolute(archive_path, archive_path + ".archive-" + stamp) != OK:
 					toast("Could not archive the save. Your current journey is unchanged.")
 					return
 	game.new_game()
@@ -703,7 +708,7 @@ func _perform_new_game() -> void:
 	refresh()
 
 func confirm_salvage(item: Dictionary) -> void:
-	var body := open_modal("Return it to the forge?", "SALVAGE EQUIPMENT")
+	var body: VBoxContainer = open_modal("Return it to the forge?", "SALVAGE EQUIPMENT")
 	_add_text(body, "Salvaging permanently consumes " + game.gear_name(item) + ". You receive %d iron and %d hide." % [maxi(1, DB2.ITEMS[item.id].tier), maxi(1, DB2.ITEMS[item.id].tier)], 16)
 	var uid: String = str(item.uid)
 	_add_button(body, "Salvage this item", func(): _finish_salvage(uid))
@@ -715,7 +720,7 @@ func _finish_salvage(uid: String) -> void:
 func confirm_retreat() -> void:
 	if phase == "results":
 		return
-	var body := open_modal("Head for the lanterns?", "RETREAT")
+	var body: VBoxContainer = open_modal("Head for the lanterns?", "RETREAT")
 	_add_text(body, "Keep everything earned from defeated enemies. You will not receive the region's completion bonus or unlock its next trail.", 17)
 	_add_button(body, "Retreat with my loot", _finish_retreat)
 
@@ -724,7 +729,7 @@ func _finish_retreat() -> void:
 	end_expedition("retreat")
 
 func show_listing(item: Dictionary) -> void:
-	var body := open_modal("Offer your handiwork", "LOCAL EXCHANGE")
+	var body: VBoxContainer = open_modal("Offer your handiwork", "LOCAL EXCHANGE")
 	_add_text(body, game.gear_name(item), 20, UI2.QUALITY[int(item.quality)])
 	_add_text(body, "Guide price: %d gold. Maximum: %d gold." % [game.item_value(item), game.item_value(item) * 3], 15)
 	var price: SpinBox = NUMBER_INPUT_SCENE.instantiate()
@@ -737,12 +742,12 @@ func show_listing(item: Dictionary) -> void:
 	_add_button(body, "Create listing", func(): _create_local_listing(uid, int(price.value)))
 
 func _create_local_listing(uid: String, price: int) -> void:
-	var success := game.list_item(uid, price)
+	var success: bool = bool(game.list_item(uid, price))
 	close_modal()
 	perform(success, "Your item is listed. Buyers visit after completed expeditions.")
 
 func craft_selected() -> void:
-	var item = game.craft(selected_recipe)
+	var item: Dictionary = game.craft(selected_recipe)
 	if item.is_empty():
 		toast("Not enough materials, or the backpack is full.")
 		return
@@ -750,11 +755,11 @@ func craft_selected() -> void:
 	_save()
 	sound.play("forge")
 	refresh()
-	var body := open_modal("Fresh from the forge", DB2.RARITIES[int(item.quality)].to_upper() + " CRAFT")
+	var body: VBoxContainer = open_modal("Fresh from the forge", DB2.RARITIES[int(item.quality)].to_upper() + " CRAFT")
 	_add_icon(body, UI2.atlas(DB2.ITEMS[item.id].icon), 135)
 	_add_text(body, game.gear_name(item), 24, UI2.QUALITY[int(item.quality)])
 	_add_text(body, DB2.stats_text(game.gear_stats(item)), 17, UI2.GREEN)
-	var row := HBoxContainer.new()
+	var row: HBoxContainer = HBoxContainer.new()
 	body.add_child(row)
 	var uid: String = str(item.uid)
 	_add_button(row, "Equip now", func(): _equip_crafted(uid))
